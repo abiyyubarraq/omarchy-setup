@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Show my CLI tools cheat sheet
+f="$HOME/.config/omarchy/cli-tools.md"
+if command -v glow >/dev/null; then
+  glow -p "$f"
+else
+  less "$f"
+fi

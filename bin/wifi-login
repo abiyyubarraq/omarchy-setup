@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Open the WiFi captive-portal (sign-in) page.
+# Portals can only intercept plain HTTP, so we open an http:// page on purpose.
+url="http://neverssl.com/"
+if command -v google-chrome-stable >/dev/null; then
+  exec uwsm-app -- google-chrome-stable --new-window --incognito "$url"
+else
+  exec uwsm-app -- xdg-open "$url"
+fi

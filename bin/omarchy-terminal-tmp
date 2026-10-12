@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Like omarchy-launch-terminal, but when no terminal is focused it opens ~/tmp
+# instead of the home folder.
+cwd=$(omarchy-cmd-terminal-cwd)
+[ "$cwd" = "$HOME" ] && cwd="$HOME/tmp"
+exec setsid uwsm-app -- xdg-terminal-exec --dir="$cwd" "$@"

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Open Claude Code inside your notes folder to connect/summarize notes.
+# Set NOTES_DIR to your Obsidian vault if different.
+NOTES_DIR="${NOTES_DIR:-$HOME/Documents/Notes}"
+mkdir -p "$NOTES_DIR"
+exec setsid uwsm-app -- xdg-terminal-exec --dir="$NOTES_DIR" bash -lc 'claude'

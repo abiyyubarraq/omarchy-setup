@@ -1,0 +1,8 @@
+// Launcher (Super+Space) entries added by omarchy-setup.
+// install.sh merges these into ~/.config/omarchy/extensions/omarchy-menu.jsonc
+{
+  "activity": {"icon": "󰕛", "label": "Activity Monitor", "action": "omarchy-launch-or-focus-tui btop", "description": "btop task manager cpu ram memory processes system monitor"},
+  "clitools": {"icon": "", "label": "CLI Tools", "action": "omarchy-launch-or-focus-tui cli-tools", "description": "cheat sheet terminal commands tools help how to use eza bat ripgrep yazi lazygit"},
+  "wifilogin": {"icon": "", "label": "WiFi Login", "action": "wifi-login", "description": "captive portal sign in hotspot public wifi page not showing"},
+  "notesai": {"icon": "󰉽", "label": "Notes AI", "action": "notes-ai", "description": "claude connect dots obsidian vault summarize link related notes"}
+}
