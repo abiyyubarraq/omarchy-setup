@@ -49,6 +49,7 @@ Some things can't be scripted and are up to you after install:
 - **Logins** (per machine): `gh auth login`, `gcloud auth login`, browser sign-ins, VS Code Settings Sync.
 - **On-screen keyboard**: `yay -S wvkbd` (if your network blocks SourceHut, build it from the GitHub mirror `github.com/jjsullivan5196/wvkbd`). Then `Super+Ctrl+Shift+K`.
 - **Notes AI** opens Claude Code in `~/Documents/Notes` (set `NOTES_DIR` to change). It needs Claude Code installed and logged in: `curl -fsSL https://claude.ai/install.sh | bash`.
+- **Laptop won't truly sleep on lid close** (fan stays on, battery drains): your laptop is using light `s2idle` sleep. If `cat /sys/power/mem_sleep` lists `deep`, the installer offers to switch to it (real suspend-to-RAM). Test that it wakes cleanly; revert by deleting `/etc/tmpfiles.d/deep-sleep.conf`.
 - **Dual-boot clock** (if you also run Windows): `timedatectl set-local-rtc 1` so both OSes agree on the time.
 
 ## Undo

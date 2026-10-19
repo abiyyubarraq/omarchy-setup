@@ -141,6 +141,19 @@ command -v google-chrome-stable >/dev/null && { env -u BROWSER xdg-settings set 
 xdg-mime default org.gnome.TextEditor.desktop text/plain 2>/dev/null && ok ".txt opens in Text Editor"
 
 # ---------------------------------------------------------------------------
+say "13/13  Optional: deep sleep (laptop) — fan truly off when the lid closes"
+if grep -qw deep /sys/power/mem_sleep 2>/dev/null; then
+  read -rp "   Your laptop supports deep (S3) sleep. Use it instead of s2idle? [y/N] " a
+  if [[ "$a" =~ ^[yY]$ ]]; then
+    echo 'w /sys/power/mem_sleep - - - - deep' | sudo tee /etc/tmpfiles.d/deep-sleep.conf >/dev/null
+    sudo systemd-tmpfiles --create /etc/tmpfiles.d/deep-sleep.conf 2>/dev/null
+    ok "deep sleep enabled (test: close lid; if it will not wake, delete /etc/tmpfiles.d/deep-sleep.conf)"
+  fi
+else
+  warn "this machine only offers s2idle; skipping deep sleep"
+fi
+
+# ---------------------------------------------------------------------------
 say "Done!"
 cat <<'EOF'
    Open a NEW terminal (Super+Enter) to load the prompt, suggestions and history.
