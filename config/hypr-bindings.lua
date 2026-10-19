@@ -17,5 +17,7 @@ o.bind("SUPER + RETURN", "Terminal", os.getenv("HOME") .. "/.local/bin/omarchy-t
 -- Super+N opens a quick note (GNOME Text Editor, keeps text without saving)
 o.bind("SUPER + N", "Quick note", "uwsm-app -- gnome-text-editor")
 
--- Sleep the laptop when the lid is closed, unless an external monitor is attached
-o.bind("switch:on:Lid Switch", nil, "bash -c 'omarchy-hw-external-monitors || systemctl suspend'", { locked = true })
+-- Sleep the laptop when the lid is closed, unless an external monitor is attached.
+-- Replaces Omarchy's lock-only lid handler (Hyprland runs only one handler per switch).
+hl.unbind("switch:on:Lid Switch")
+o.bind("switch:on:Lid Switch", nil, os.getenv("HOME") .. "/.local/bin/omarchy-lid-suspend", { locked = true })

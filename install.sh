@@ -92,7 +92,7 @@ ok "git configured for delta"
 # ---------------------------------------------------------------------------
 say "8/12  Launcher scripts (~/.local/bin)"
 mkdir -p ~/.local/bin
-cp "$HERE"/bin/* ~/.local/bin/ && chmod +x ~/.local/bin/{omarchy-terminal-tmp,cli-tools,wifi-login,notes-ai}
+cp "$HERE"/bin/* ~/.local/bin/ && chmod +x ~/.local/bin/omarchy-terminal-tmp ~/.local/bin/cli-tools ~/.local/bin/wifi-login ~/.local/bin/notes-ai ~/.local/bin/omarchy-lid-suspend
 cp "$HERE/config/cli-tools.md" ~/.config/omarchy/cli-tools.md 2>/dev/null
 ok "installed: omarchy-terminal-tmp, cli-tools, wifi-login, notes-ai"
 

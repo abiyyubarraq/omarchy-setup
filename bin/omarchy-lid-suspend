@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+export PATH="/usr/share/omarchy/bin:$PATH"
+if omarchy-hw-laptop-closed && ! omarchy-hw-external-monitors; then
+  omarchy-system-lock >/dev/null 2>&1 || true
+  omarchy-hyprland-monitor-clamshell
+  exec systemctl suspend
+fi
+omarchy-hyprland-monitor-clamshell
