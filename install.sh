@@ -122,7 +122,7 @@ omarchy menu refresh 2>/dev/null || true
 ok "menu entries added"
 
 # ---------------------------------------------------------------------------
-say "11/12  Keybindings (~/.config/hypr/bindings.lua)"
+say "11/12  Keybindings + window rules (~/.config/hypr)"
 BIND=~/.config/hypr/bindings.lua
 if [[ -f "$BIND" ]] && ! grep -q "omarchy-setup keybinding customizations" "$BIND"; then
   cp "$BIND" "$BIND.bak.$(date +%s)"
@@ -133,6 +133,16 @@ if [[ -f "$BIND" ]] && ! grep -q "omarchy-setup keybinding customizations" "$BIN
 else
   ok "keybindings already present or bindings.lua missing"
 fi
+
+# Browsers driven by Claude Code (Playwright / Chrome DevTools MCP) open on workspace 5
+cp "$HERE/config/hypr-automation-browsers.lua" ~/.config/hypr/automation-browsers.lua
+HYPR=~/.config/hypr/hyprland.lua
+if [[ -f "$HYPR" ]] && ! grep -qF 'require("hypr.automation-browsers")' "$HYPR"; then
+  cp "$HYPR" "$HYPR.bak.$(date +%s)"
+  printf '\nrequire("hypr.automation-browsers")\n' >> "$HYPR"
+fi
+hyprctl reload >/dev/null 2>&1 || true
+ok "automation browsers open on workspace 5 (your own browser is not moved)"
 
 # ---------------------------------------------------------------------------
 say "12/12  Default apps"
@@ -164,6 +174,7 @@ cat <<'EOF'
      • Tools: atuin, yazi, delta, glow, duf, dust, yq, + the usual (rg, fd, fzf, eza, bat, lazygit…)
      • Prompt: Oh My Posh (atomic) + ble.sh suggestions
      • Keys: Super+N note, Super+Enter→~/tmp, lid-close sleep, Super+Ctrl+Shift+K on-screen keyboard
+     • Windows: Claude Code's automation browsers open on workspace 5
      • Launcher: Activity, CLI Tools (cheat sheet), WiFi Login, Notes AI
      • Files: right-click Open in Terminal + Copy Path
 EOF
