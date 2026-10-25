@@ -25,6 +25,7 @@ It asks for your password once (sudo) and is safe to re-run. When it finishes, *
 | **Languages** | mise installs node, bun, deno, python, go, java, uv, oh-my-posh |
 | **Keybindings** | `Super+N` quick note · `Super+Enter` opens terminal in `~/tmp` · close lid → sleep · `Super+Ctrl+Shift+K` on-screen keyboard · `Super+F`/`Super+Alt+F` swapped (full-width / full-screen) |
 | **Launcher** (`Super+Space`) | **Activity** (btop), **CLI Tools** (a scrollable cheat sheet of every tool), **WiFi Login** (fixes captive-portal pages that don't show), **Notes AI** (opens Claude Code in your notes folder) |
+| **Windows** | Browsers that Claude Code drives (Playwright MCP, Chrome DevTools MCP) open on workspace 5 without pulling your view there. Your own browser is not moved. Other windows can't steal focus either. |
 | **Files (Nautilus)** | right-click → **Open in Terminal** (foot) and **Copy Path** |
 | **Defaults** | Chrome as browser, `.md` → VS Code, `.txt` → Text Editor (keeps unsaved text like Windows Notepad) |
 
@@ -34,6 +35,7 @@ It asks for your password once (sudo) and is safe to re-run. When it finishes, *
 install.sh            one-command installer (idempotent)
 config/
   hypr-bindings.lua   keybinding customizations (appended to your bindings.lua)
+  hypr-automation-browsers.lua  automation browsers → workspace 5 (→ ~/.config/hypr/)
   bashrc-additions.sh shell setup (appended to ~/.bashrc)
   atomic.omp.json     Oh My Posh theme
   cli-tools.md        the CLI cheat sheet
@@ -54,7 +56,7 @@ Some things can't be scripted and are up to you after install:
 
 ## Undo
 
-Every file the installer changes is backed up next to it (`*.bak.<timestamp>`): `~/.bashrc`, `~/.config/hypr/bindings.lua`, and the launcher menu. Remove the appended blocks or restore a backup to revert.
+Every file the installer changes is backed up next to it (`*.bak.<timestamp>`): `~/.bashrc`, `~/.config/hypr/bindings.lua`, `~/.config/hypr/hyprland.lua`, and the launcher menu. To drop the workspace-5 rule, delete the `require("hypr.automation-browsers")` line from `hyprland.lua`. Remove the appended blocks or restore a backup to revert.
 
 ## License
 
