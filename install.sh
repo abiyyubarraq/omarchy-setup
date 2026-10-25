@@ -41,7 +41,7 @@ fi
 # ---------------------------------------------------------------------------
 say "3/12  Language runtimes (mise)"
 if command -v mise >/dev/null 2>&1; then
-  mise use -g node@22 bun deno python@3.13 go@1.24 java@24 uv oh-my-posh 2>&1 | tail -1
+  mise use -g node@24 bun deno python@3.13 go@1.26 java@25 uv oh-my-posh 2>&1 | tail -1
   mise reshim 2>/dev/null
   ok "mise tools installed (node, bun, deno, python, go, java, uv, oh-my-posh)"
 else
