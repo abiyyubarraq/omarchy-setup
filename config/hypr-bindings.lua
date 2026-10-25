@@ -21,3 +21,7 @@ o.bind("SUPER + N", "Quick note", "uwsm-app -- gnome-text-editor")
 -- Replaces Omarchy's lock-only lid handler (Hyprland runs only one handler per switch).
 hl.unbind("switch:on:Lid Switch")
 o.bind("switch:on:Lid Switch", nil, os.getenv("HOME") .. "/.local/bin/omarchy-lid-suspend", { locked = true })
+
+-- Stop windows from stealing focus / pulling your view to their workspace
+-- (fixes Claude Code's browser jumping you to its workspace while you work elsewhere).
+hl.config({ misc = { focus_on_activate = false } })
